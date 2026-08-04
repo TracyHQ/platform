@@ -10,11 +10,19 @@
       "duplicatesDropped": 1,
       "coverageVsDirectory": 1.0,
       "coverageNote": "browse=new is the only sort that enumerates the directory exactly; browse=popular ties on active_installs and yields 50,126 distinct slugs of a claimed 64,947. Duplicates come from plugins added mid-run shifting the offsets, which repeats records rather than skipping them."
+    },
+    "joomla": {
+      "records": 5604,
+      "observedAt": "2026-08-04T10:44:48Z",
+      "source": "extensions.joomla.org Algolia index (jed_live), enumerated in 287 core_catid slices",
+      "directoryReportedTotal": 5610,
+      "duplicatesDropped": 0,
+      "coverageVsDirectory": 0.9989,
+      "coverageNote": "The directory reports 5,610 and all 5,610 were fetched. Six are not published because JED declares no extension type for them - their Includes badge row is empty on the listing page itself - and kind is a required field with no honest default. They are named in data/joomla.export-report.json. Algolia caps pagination at 1,000 hits and refuses the browse endpoint to a search-only key, so paging the index straight through returns 1,000 of 5,610 with an HTTP 200 for every request; core_catid partitions the index exactly and every slice fits under the cap."
     }
   },
   "notMeasured": {
-    "joomla": "No census has been run for the Joomla Extensions Directory yet.",
-    "shopify": "No census has been run for the Shopify app store yet."
+    "shopify": "No census has been run for the Shopify app store yet. The crawler exists (ecosystem-crawler/discover/fetch-shopify-apps.py) and the store rate-limits hard, so the run is scheduled rather than immediate."
   },
   "activeInstalls": {
     "included": true,
