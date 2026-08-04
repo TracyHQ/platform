@@ -1,0 +1,23 @@
+{
+  "platform": "joomla",
+  "census": "data/census/jed-extensions.ndjson.gz",
+  "out": "/Users/lee/TracyHQ/platform/data/joomla.ndjson",
+  "observedAt": "2026-08-04T10:44:48Z",
+  "sourceRows": 5610,
+  "recordsWritten": 5604,
+  "excluded": [
+    "joomla/cb-ajax-file-field: JED declares no extension type (empty Includes badge row on the listing page)",
+    "joomla/cb-ajax-text-field: JED declares no extension type (empty Includes badge row on the listing page)",
+    "joomla/cb-autowelcome: JED declares no extension type (empty Includes badge row on the listing page)",
+    "joomla/cb-captcha: JED declares no extension type (empty Includes badge row on the listing page)",
+    "joomla/cb-rating-field: JED declares no extension type (empty Includes badge row on the listing page)",
+    "joomla/lastest-views-tab-for-cb: JED declares no extension type (empty Includes badge row on the listing page)"
+  ],
+  "excludedCount": 6,
+  "checks": [
+    "required shape and path invariant",
+    "activeInstalls travels with activeInstallsSource",
+    "rating travels with ratingScale",
+    "no commercial data supplier named in any string"
+  ]
+}
