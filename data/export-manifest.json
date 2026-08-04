@@ -19,11 +19,17 @@
       "duplicatesDropped": 0,
       "coverageVsDirectory": 0.9989,
       "coverageNote": "The directory reports 5,610 and all 5,610 were fetched. Six are not published because JED declares no extension type for them - their Includes badge row is empty on the listing page itself - and kind is a required field with no honest default. They are named in data/joomla.export-report.json. Algolia caps pagination at 1,000 hits and refuses the browse endpoint to a search-only key, so paging the index straight through returns 1,000 of 5,610 with an HTTP 200 for every request; core_catid partitions the index exactly and every slice fits under the cap."
+    },
+    "shopify": {
+      "records": 464,
+      "observedAt": "2026-08-04T10:54:26Z",
+      "source": "apps.shopify.com listing pages, enriched with third-party-measured install counts",
+      "directoryReportedTotal": 24494,
+      "coverageVsDirectory": 0.0189,
+      "coverageNote": "PARTIAL AND KNOWN TO BE. The App Store publishes no bulk endpoint and rate-limits hard, so the full listing crawl runs on a schedule rather than in one pass; 464 of 24,494 listed apps are covered so far. Read coverageVsDirectory before comparing this platform with wordpress (1.0) or joomla (0.9989). 249 of these records carry a third-party-measured install count; apps the measurement provider has not observed carry no activeInstalls field rather than a zero. Refreshed on a schedule."
     }
   },
-  "notMeasured": {
-    "shopify": "No census has been run for the Shopify app store yet. The crawler exists (ecosystem-crawler/discover/fetch-shopify-apps.py) and the store rate-limits hard, so the run is scheduled rather than immediate."
-  },
+  "notMeasured": {},
   "activeInstalls": {
     "included": true,
     "sources": {
@@ -33,7 +39,17 @@
   },
   "excluded": {
     "vendorProse": "always",
-    "licensedMetrics": "always",
-    "note": "Descriptions, changelogs and marketing copy belong to the extension authors and are not republished. Metrics obtained under a commercial licence are not published, and no data supplier is named anywhere in the output."
+    "licensedMetrics": "shopify activeInstalls only",
+    "note": "Descriptions, changelogs and marketing copy belong to the extension authors and are not republished. No data supplier is named anywhere in the output, ever."
+  },
+  "measuredMetrics": {
+    "decidedOn": "2026-08-04",
+    "decidedBy": "project owner",
+    "policy": "activeInstalls for shopify may be published when it carries activeInstallsSource: third-party-measured. No other licensed metric is published, and no supplier is named.",
+    "whyThisIsADecisionAndNotADefault": "This file previously read licensedMetrics: always, meaning no metric obtained under a commercial licence was published at all. Publishing here is not display: dist/ is released CC BY 4.0, which grants third parties an irrevocable licence to redistribute the numbers. That is a commercial and legal judgement about the supplier agreement, made by the project owner, not a technical default.",
+    "exercised": true,
+    "exercisedNote": "In effect since 2026-08-04: 249 published shopify records carry activeInstalls with activeInstallsSource: third-party-measured.",
+    "whyShopifyOnly": "wordpress.org and the Joomla Extensions Directory publish their own adoption figures, which carry activeInstallsSource: directory-reported and are not licensed. The Shopify App Store publishes no install figure at all, so a measurement is the only source of one.",
+    "absentIsNotZero": "An app the measurement provider did not observe is published with no activeInstalls field. It is never published as zero: 'not observed' and 'has no installs' are different claims and only the first is known."
   }
 }

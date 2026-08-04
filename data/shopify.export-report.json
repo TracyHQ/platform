@@ -1,0 +1,18 @@
+{
+  "platform": "shopify",
+  "census": "data/census/shopify-apps.ndjson.gz",
+  "out": "/Users/lee/TracyHQ/platform/data/shopify.ndjson",
+  "observedAt": "2026-08-04T10:54:26Z",
+  "sourceRows": 464,
+  "recordsWritten": 464,
+  "excluded": [],
+  "excludedCount": 0,
+  "measuredInstallsAttached": 249,
+  "measuredInstallsAvailable": 7520,
+  "checks": [
+    "required shape and path invariant",
+    "activeInstalls travels with activeInstallsSource",
+    "rating travels with ratingScale",
+    "no commercial data supplier named in any string"
+  ]
+}
