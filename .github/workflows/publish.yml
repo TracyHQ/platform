@@ -86,7 +86,13 @@ jobs:
             total=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .records" dist/platform/index.json)
             vendor=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .declared" dist/platform/index.json)
             index_count=$(jq -r '.count' "dist/platform/$platform/index.json")
-            submissions=$(find "registry/$platform" -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+            # A marketplace with no submissions yet has no directory; under
+            # `pipefail` a failing `find` takes the whole step down, and the step
+            # would then be reporting the wrong problem.
+            submissions=0
+            if [ -d "registry/$platform" ]; then
+              submissions=$(find "registry/$platform" -name '*.json' | wc -l | tr -d ' ')
+            fi
             echo "$platform: manifest=$declared_records ndjson=$data_lines measured=$measured declared=$vendor index=$index_count submissions=$submissions"
 
             [ "$data_lines" = "$declared_records" ] || { echo "::error::data/$platform.ndjson holds $data_lines records; the manifest says $declared_records"; fail=1; }
