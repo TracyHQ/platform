@@ -22,7 +22,28 @@
 /registry/   @leeknowsai
 
 /curation/   @leeknowsai
-/data/       @leeknowsai
+
+# data/ IS DELIBERATELY UNOWNED, AND THAT IS A CHANGE FROM HOW THIS STARTED.
+#
+# Everything else here is written by a person and needs a reader. data/ is not:
+# it is crawler output, regenerated wholesale by a scheduled job that already
+# refuses to emit a record failing any of the rules that matter — the served
+# path invariant, activeInstalls never travelling without its source, rating
+# never without its scale, and no data supplier named in any string. Those
+# checks run before the file is written and again in CI before it is served.
+#
+# Requiring a human to approve a diff of 24,000 machine-generated lines does not
+# get that file read. It gets the review clicked through, which is worse than no
+# review because it looks like one happened. The Joomla census was merged with
+# --admin for exactly this reason, and a gate that is routinely overridden is
+# not protecting anything.
+#
+# NOTE: removing the line below stops data/ needing a CODE OWNER review. It does
+# NOT exempt data/ from `required_approving_review_count`, because GitHub cannot
+# scope that by path. The scheduled publisher is handled by an explicit bypass
+# allowance on the branch protection instead — named, auditable, and limited to
+# that identity, rather than the silent "admins can do anything" it relied on
+# before.
 /schema/     @leeknowsai
 /src/        @leeknowsai
 /bin/        @leeknowsai
