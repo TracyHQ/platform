@@ -1,0 +1,17 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "wordpress/abc-pricing-table",
+  "platform": "wordpress",
+  "slug": "abc-pricing-table",
+  "title": "Pricing Table – Responsive & Easy",
+  "kind": ["plugin"],
+  "listingUrl": "https://wordpress.org/plugins/abc-pricing-table/",
+  "declaredAt": "2026-08-04T00:00:00Z",
+  "commercial": {
+    "businessModel": "freemium",
+    "pricingUrl": "https://example.invalid/pricing",
+    "tiers": [
+      { "name": "Pro", "price": "$29/yr", "url": "https://example.invalid/pricing" }
+    ]
+  }
+}
