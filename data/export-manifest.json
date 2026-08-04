@@ -33,7 +33,17 @@
   },
   "excluded": {
     "vendorProse": "always",
-    "licensedMetrics": "always",
-    "note": "Descriptions, changelogs and marketing copy belong to the extension authors and are not republished. Metrics obtained under a commercial licence are not published, and no data supplier is named anywhere in the output."
+    "licensedMetrics": "shopify activeInstalls only",
+    "note": "Descriptions, changelogs and marketing copy belong to the extension authors and are not republished. No data supplier is named anywhere in the output, ever."
+  },
+  "measuredMetrics": {
+    "decidedOn": "2026-08-04",
+    "decidedBy": "project owner",
+    "policy": "activeInstalls for shopify may be published when it carries activeInstallsSource: third-party-measured. No other licensed metric is published, and no supplier is named.",
+    "whyThisIsADecisionAndNotADefault": "This file previously read licensedMetrics: always, meaning no metric obtained under a commercial licence was published at all. Publishing here is not display: dist/ is released CC BY 4.0, which grants third parties an irrevocable licence to redistribute the numbers. That is a commercial and legal judgement about the supplier agreement, made by the project owner, not a technical default.",
+    "exercised": false,
+    "exercisedNote": "No shopify records are published yet, so no licensed metric has reached dist/. The policy takes effect with the first shopify census.",
+    "whyShopifyOnly": "wordpress.org and the Joomla Extensions Directory publish their own adoption figures, which carry activeInstallsSource: directory-reported and are not licensed. The Shopify App Store publishes no install figure at all, so a measurement is the only source of one.",
+    "absentIsNotZero": "An app the measurement provider did not observe is published with no activeInstalls field. It is never published as zero: 'not observed' and 'has no installs' are different claims and only the first is known."
   }
 }
