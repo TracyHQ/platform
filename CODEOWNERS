@@ -1,0 +1,30 @@
+# Ownership points at @leeknowsai, a single verified org member, because
+# @TracyHQ/registry-maintainers does not exist yet. Switch to the team once it
+# does — one person is a single point of failure for review.
+#
+# This file only gates merges because branch protection on `main` has "Require
+# review from Code Owners" turned on. It was turned on the day the repo was
+# created, before the first record could be submitted. Without that rule this
+# file is advisory, and the sibling MCP registry shipped in exactly that state
+# for a while; the consequence there was small because a submission could not
+# reach a measured field. Here it can.
+
+# registry/ IS OWNED HERE, AND THAT IS THE DIFFERENCE FROM THE MCP REGISTRY.
+#
+# There, registry/ is deliberately unowned: platform namespaces are reserved, so
+# a submission physically cannot touch a measurement and anyone may merge one.
+# Here every record lives under a platform namespace and submissions write into
+# the same record the crawler wrote. `src/validate.ts` refuses the measured
+# fields, but the rest of the record still needs a human to look at it.
+#
+# "Anyone can submit" is still true: opening a pull request needs no permission.
+# Merging one needs a reader.
+/registry/   @leeknowsai
+
+/curation/   @leeknowsai
+/data/       @leeknowsai
+/schema/     @leeknowsai
+/src/        @leeknowsai
+/bin/        @leeknowsai
+/scripts/    @leeknowsai
+/.github/    @leeknowsai

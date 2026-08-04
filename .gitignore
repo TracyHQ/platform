@@ -1,0 +1,7 @@
+# Built by CI on every publish, never committed. See the rule in README.md:
+# dist/ is derived from data/ + registry/, and a committed derivative eventually
+# disagrees with its source with no way to tell which one is right.
+dist/
+
+node_modules/
+.DS_Store

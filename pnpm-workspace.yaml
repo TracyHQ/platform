@@ -1,0 +1,4 @@
+# esbuild ships a platform binary and needs its postinstall to run; vitest and tsx
+# both depend on it. Every other build script stays blocked.
+allowBuilds:
+  esbuild: true

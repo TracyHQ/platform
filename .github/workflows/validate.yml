@@ -1,0 +1,42 @@
+name: validate
+
+# Pure rules only. Nothing here reaches a vendor's site, a marketplace API, or
+# any other network service, so "is this pull request well-formed" can never fail
+# because somebody else's server was slow. The one check that does need the
+# network lives in verify-ownership.yml.
+on:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+
+      # The committed schema must match what src/record.ts generates. Otherwise a
+      # submitter validates against one contract while CI enforces another, and
+      # they only find out after opening a pull request.
+      - name: Schema has not drifted from src/record.ts
+        run: |
+          pnpm emit-schema
+          git diff --exit-code schema/ || {
+            echo "::error::schema/ is out of date. Run 'pnpm emit-schema' and commit the result."
+            exit 1
+          }
+
+      # Refuses a submission that writes a measured field, mismatches its own
+      # path, or submits its own provenance.
+      - run: pnpm validate
+
+      - run: pnpm build-dist
+      # After the build on purpose: the strings that reach consumers are
+      # generated into dist/, not written in a source file.
+      - run: pnpm check-language

@@ -1,0 +1,17 @@
+# Disable line-ending conversion for every file in this repo.
+#
+# WHY THIS EXISTS — and it is not the reason the sibling registries give.
+#
+# The skills registry turns conversion off to protect a `contentHash` taken over
+# SKILL.md. There is no such file here. The reason here is the NDJSON in `data/`.
+#
+# Two gates depend on those files being byte-identical wherever they are checked
+# out. `build-dist --check` builds twice and compares a sha256 over every byte it
+# is about to publish, and the publish workflow cross-checks the record count in
+# the built index against `data/export-manifest.json`. Both are written on macOS
+# and both are enforced on a Linux runner. If git rewrote line endings on
+# checkout, a 69,052-line file would be a different 69,052 lines on the runner
+# than on the machine that produced it, the digests would disagree for a reason
+# nobody could see in a diff, and the honest conclusion — "the build is not
+# deterministic" — would be wrong.
+*  -text

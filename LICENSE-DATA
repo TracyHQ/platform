@@ -1,0 +1,36 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Applies to the data in this repository: `data/`, `registry/`, `curation/`, and
+everything built from them into `dist/` and served at
+https://registry.tracy.ai/platform/.
+
+The code that produces them is MIT — see LICENSE.
+
+    You are free to share and adapt this data for any purpose, including
+    commercially, provided you give appropriate credit, link to the licence,
+    and indicate if changes were made.
+
+    Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+    Summary:   https://creativecommons.org/licenses/by/4.0/
+
+Attribution: "Tracy platform registry — https://registry.tracy.ai/platform/"
+
+WHAT THIS LICENCE DOES AND DOES NOT COVER
+
+It covers the records: the factual fields this project collected, normalised and
+published — names, slugs, listing URLs, install counts, ratings, release dates,
+and the provenance attached to each.
+
+It does not cover, and this repository does not republish, prose written by
+extension authors: descriptions, changelogs, screenshots and marketing copy on a
+marketplace listing belong to whoever wrote them. Those fields were dropped
+during export rather than relicensed here.
+
+Third-party names appear verbatim. They are facts about the ecosystem, not
+claims of any relationship with their owners.
+
+Install counts and ratings carry a source label saying how each number was
+obtained. Where a number was measured by an outside party rather than published
+by the marketplace, the label says `third-party-measured` and no supplier is
+named — the classification is what a reader needs, and the relationship is not
+ours to publish.

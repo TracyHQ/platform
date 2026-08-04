@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "note": "Counts and dates for what each NDJSON file in this directory holds. CI cross-checks these numbers against the file and against the built index, so a drop that lost records fails the publish instead of quietly shipping.",
+  "platforms": {
+    "wordpress": {
+      "records": 69052,
+      "observedAt": "2026-08-04T06:00:50Z",
+      "source": "wordpress.org plugins/info/1.2 query_plugins, browse=new, 277 pages",
+      "directoryReportedTotal": 69053,
+      "duplicatesDropped": 1,
+      "coverageVsDirectory": 1.0,
+      "coverageNote": "browse=new is the only sort that enumerates the directory exactly; browse=popular ties on active_installs and yields 50,126 distinct slugs of a claimed 64,947. Duplicates come from plugins added mid-run shifting the offsets, which repeats records rather than skipping them."
+    }
+  },
+  "notMeasured": {
+    "joomla": "No census has been run for the Joomla Extensions Directory yet.",
+    "shopify": "No census has been run for the Shopify app store yet."
+  },
+  "activeInstalls": {
+    "included": true,
+    "sources": {
+      "directory-reported": "published by the marketplace itself, usually in buckets",
+      "third-party-measured": "measured from outside the marketplace"
+    }
+  },
+  "excluded": {
+    "vendorProse": "always",
+    "licensedMetrics": "always",
+    "note": "Descriptions, changelogs and marketing copy belong to the extension authors and are not republished. Metrics obtained under a commercial licence are not published, and no data supplier is named anywhere in the output."
+  }
+}

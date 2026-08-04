@@ -1,0 +1,123 @@
+name: Publish
+
+# RUNS WHEN THE DATA CHANGES, NOT ON A CLOCK.
+#
+# There is no `schedule:` here, and that is a decision rather than an omission.
+# Three reasons:
+#
+#   1. The build is deterministic — the same inputs produce the same bytes. A
+#      nightly cron would redeploy identical content on 364 days out of 365.
+#   2. The data only changes when a census run happens, and those run by hand on
+#      the machine that holds the raw crawl. The real event is "data/ changed",
+#      so that is the trigger.
+#   3. A cron would make the dataset LOOK freshly updated while every
+#      `observedAt` stayed exactly the same. This dataset sells precisely "the
+#      day we went and looked"; blurring that destroys the only thing it has.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'registry/**'
+      - 'curation/**'
+      - 'schema/**'
+      - 'src/**'
+      - 'scripts/**'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# A later deploy supersedes an earlier one, but an in-flight deploy is not
+# cancelled — interrupting one can leave Pages half-updated.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Prove determinism BEFORE building for real: build twice in-process and
+      # compare sha256. If a timestamp or filesystem ordering ever leaks in, it
+      # dies here rather than silently producing a deploy that differs from the
+      # last one for reasons nobody can explain.
+      - name: Check determinism
+        run: pnpm build-dist --check
+
+      # The build also enforces three invariants and exits non-zero on any of
+      # them: `name` matches the served path, no two slugs differ only in case
+      # (macOS builds it, Linux serves it), and the root of dist/ holds no files
+      # — that space belongs to mcp/ and skills/, which live in other repos.
+      - name: Build dist
+        run: pnpm build-dist
+
+      # Runs AFTER the build on purpose: the strings that reach consumers are
+      # generated into dist/, not written in any source file. That is exactly how
+      # a Vietnamese `note` shipped to the public API of the sibling registry
+      # once. Third-party extension titles are data and are not scanned.
+      - name: Check the public surface is in English
+        run: pnpm check-language
+
+      # THE COUNT HAS TO SURVIVE THE ROUND TRIP.
+      #
+      # A drop that lost half its records still builds, still validates, and
+      # still looks like a working site. The only thing that catches it is
+      # comparing the built index against what the export said it contained.
+      - name: Cross-check the record count against its sources
+        run: |
+          set -euo pipefail
+          fail=0
+          for platform in $(jq -r '.platforms | keys[]' data/export-manifest.json); do
+            declared_records=$(jq -r ".platforms.\"$platform\".records" data/export-manifest.json)
+            data_lines=$(grep -c . "data/$platform.ndjson")
+            measured=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .measured" dist/platform/index.json)
+            total=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .records" dist/platform/index.json)
+            vendor=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .declared" dist/platform/index.json)
+            index_count=$(jq -r '.count' "dist/platform/$platform/index.json")
+            submissions=$(find "registry/$platform" -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+            echo "$platform: manifest=$declared_records ndjson=$data_lines measured=$measured declared=$vendor index=$index_count submissions=$submissions"
+
+            [ "$data_lines" = "$declared_records" ] || { echo "::error::data/$platform.ndjson holds $data_lines records; the manifest says $declared_records"; fail=1; }
+            [ "$measured" = "$declared_records" ] || { echo "::error::$measured measured records reached the index; the manifest says $declared_records"; fail=1; }
+            [ "$total" = "$index_count" ] || { echo "::error::platform/$platform/index.json holds $index_count records; the manifest entry says $total"; fail=1; }
+            [ "$total" = "$((measured + vendor))" ] || { echo "::error::$total != $measured measured + $vendor declared"; fail=1; }
+            [ "$vendor" -le "$submissions" ] || { echo "::error::$vendor declared-only records from $submissions submission files"; fail=1; }
+          done
+          exit $fail
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  # "DID THIS EVER DEPLOY?" — TWO API FIELDS THAT LOOK LIKE NO, AND MEAN NOTHING
+  #
+  # `gh api repos/TracyHQ/platform/pages` returns `status: null`, and
+  # `.../pages/builds/latest` returns 404. Both look exactly like a site that has
+  # never published. Neither is a failure signal: `builds/latest` belongs to
+  # branch-built Pages, which workflow-built sites never populate.
+  #
+  # The endpoint that answers is `repos/{owner}/{repo}/deployments` — look for
+  # environment `github-pages` and check its sha. It cost one round of
+  # misdiagnosis on the MCP registry on 2026-08-03.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,27 @@
+{
+  "name": "tracy-platform-registry",
+  "version": "1.0.0",
+  "description": "Open registry of WordPress, Joomla and Shopify extensions: what we measured, and what vendors declare.",
+  "license": "MIT",
+  "//license": "Code is MIT. Data under data/, registry/, curation/ and dist/ is CC BY 4.0 — see LICENSE-DATA.",
+  "type": "module",
+  "packageManager": "pnpm@11.18.0",
+  "scripts": {
+    "validate": "tsx bin/validate.ts",
+    "verify-ownership": "tsx bin/verify-ownership.ts",
+    "emit-schema": "tsx bin/emit-schema.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build-dist": "tsx scripts/build-dist.mjs",
+    "check-language": "node scripts/check-language.mjs"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "tsx": "^4.23.5",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

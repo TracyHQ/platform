@@ -1,0 +1,34 @@
+name: ownership
+
+# PATH A: read the vendor's own public listing back and look for the token they
+# declared.
+#
+# Separate from validate.yml because this is the only job that touches the
+# network. Folding it in would mean a well-formed record fails review because
+# wordpress.org was slow, and people would learn to ignore a red check.
+#
+# A GREEN CHECK IS A SHORTCUT, A RED ONE IS NOT A REJECTION.
+#
+# Green means whoever wrote the record can edit the listing it describes, so a
+# maintainer can merge without checking. Anything else means a maintainer looks
+# at it — which is the normal path for the commercial extensions that appear on
+# no public directory at all, and those are a large part of why this registry
+# exists. The job only fails when a token was declared and the listing does not
+# carry it: that claim is false as stated.
+on:
+  pull_request:
+    paths:
+      - 'registry/**'
+
+jobs:
+  ownership:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify-ownership
