@@ -295,3 +295,5 @@ export function platformOf(name: string): string {
 export function slugOf(name: string): string {
   return name.split('/')[1] ?? ''
 }
+
+// guard check, reverted immediately
