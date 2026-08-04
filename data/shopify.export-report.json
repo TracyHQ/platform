@@ -1,13 +1,13 @@
 {
   "platform": "shopify",
   "census": "data/census/shopify-apps.ndjson.gz",
-  "out": "/Users/lee/TracyHQ/platform/data/shopify.ndjson",
-  "observedAt": "2026-08-04T10:54:26Z",
-  "sourceRows": 464,
-  "recordsWritten": 464,
+  "out": "../platform/data/shopify.ndjson",
+  "observedAt": "2026-08-04T12:22:53Z",
+  "sourceRows": 522,
+  "recordsWritten": 522,
   "excluded": [],
   "excludedCount": 0,
-  "measuredInstallsAttached": 249,
+  "measuredInstallsAttached": 282,
   "measuredInstallsAvailable": 7520,
   "checks": [
     "required shape and path invariant",
