@@ -16,15 +16,22 @@ curl -s https://registry.tracy.ai/platform/wordpress/index.json | jq '.records[]
 
 # One full record
 curl -s https://registry.tracy.ai/platform/wordpress/woocommerce.json | jq
+
+# Every full record at once — 4.9 MB for all 69,052, instead of 69,052 fetches.
+# Carries listingUrl, platformData and provenance, which the slim index does not.
+curl -s https://registry.tracy.ai/platform/wordpress/records.ndjson.gz | gzip -dc | head -1 | jq
 ```
 
 ## What is in it today
 
-| Marketplace | Records | Measured |
-|---|---|---|
-| WordPress | 69,052 | 2026-08-04 — the whole wordpress.org plugin directory |
-| Joomla | — | not yet |
-| Shopify | — | not yet |
+| Marketplace | Records | Coverage | Measured |
+|---|---|---|---|
+| WordPress | 69,052 | 1.0 | 2026-08-04 — the whole wordpress.org plugin directory |
+| Joomla | 5,604 | 0.9989 | 2026-08-04 — the whole Joomla Extensions Directory |
+| Shopify | 23,581 | 0.9599 | 2026-08-05 — climbing; the App Store rate-limits, so the crawl runs in scheduled passes |
+
+Read `coverageVsDirectory` before comparing the three. They are not equally complete, and the
+manifest says so rather than leaving you to assume.
 
 The WordPress census covers the directory completely: wordpress.org reported 69,053 plugins and
 69,052 distinct ones came back, the difference being one duplicate dropped. `data/export-manifest.json`

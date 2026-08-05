@@ -86,6 +86,9 @@ jobs:
             total=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .records" dist/platform/index.json)
             vendor=$(jq -r ".platforms[] | select(.platform==\"$platform\") | .declared" dist/platform/index.json)
             index_count=$(jq -r '.count' "dist/platform/$platform/index.json")
+            # The bulk file is a second copy of the same records, so it is a
+            # second chance to disagree. Counted, not trusted.
+            bulk_lines=$(gzip -dc "dist/platform/$platform/records.ndjson.gz" | grep -c .)
             # A marketplace with no submissions yet has no directory; under
             # `pipefail` a failing `find` takes the whole step down, and the step
             # would then be reporting the wrong problem.
@@ -93,11 +96,12 @@ jobs:
             if [ -d "registry/$platform" ]; then
               submissions=$(find "registry/$platform" -name '*.json' | wc -l | tr -d ' ')
             fi
-            echo "$platform: manifest=$declared_records ndjson=$data_lines measured=$measured declared=$vendor index=$index_count submissions=$submissions"
+            echo "$platform: manifest=$declared_records ndjson=$data_lines measured=$measured declared=$vendor index=$index_count bulk=$bulk_lines submissions=$submissions"
 
             [ "$data_lines" = "$declared_records" ] || { echo "::error::data/$platform.ndjson holds $data_lines records; the manifest says $declared_records"; fail=1; }
             [ "$measured" = "$declared_records" ] || { echo "::error::$measured measured records reached the index; the manifest says $declared_records"; fail=1; }
             [ "$total" = "$index_count" ] || { echo "::error::platform/$platform/index.json holds $index_count records; the manifest entry says $total"; fail=1; }
+            [ "$total" = "$bulk_lines" ] || { echo "::error::platform/$platform/records.ndjson.gz holds $bulk_lines records; the manifest entry says $total"; fail=1; }
             [ "$total" = "$((measured + vendor))" ] || { echo "::error::$total != $measured measured + $vendor declared"; fail=1; }
             [ "$vendor" -le "$submissions" ] || { echo "::error::$vendor declared-only records from $submissions submission files"; fail=1; }
           done
