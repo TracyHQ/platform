@@ -31,6 +31,7 @@
  */
 
 import { createHash } from 'node:crypto'
+import { gzipSync } from 'node:zlib'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -139,6 +140,31 @@ function slim(record) {
   return out
 }
 
+/**
+ * Every full record, one per line, gzipped.
+ *
+ * WHY THIS EXISTS ALONGSIDE THE INDEX
+ *
+ * The slim index answers "which record do I want"; this answers "give me all of
+ * them". A consumer that materialises every record — a static site building a
+ * page per extension, an importer seeding a database — needs `listingUrl`,
+ * `platformData` and `provenance`, none of which the index carries, and the only
+ * other way to get them is 69,052 individual fetches. That is not a shape any
+ * client should have to ask for.
+ *
+ * 46 MB of NDJSON compresses to about 4.9 MB, so this is cheaper over the wire
+ * than the slim index it sits next to, while carrying strictly more.
+ *
+ * Deterministic: Node writes MTIME as 0 in the gzip header, verified rather than
+ * assumed — `--check` compares two builds byte for byte and a clock in the
+ * header would fail it.
+ */
+function bulkRecords(records) {
+  return gzipSync(Buffer.from(records.map((record) => JSON.stringify(record)).join('\n') + '\n'), {
+    level: 9,
+  })
+}
+
 /** Compact JSON, one record per line. Pretty-printing 69,052 records costs 60 MB of indentation. */
 function jsonLines(records) {
   return `[\n${records.map((record) => JSON.stringify(record)).join(',\n')}\n]\n`
@@ -213,6 +239,8 @@ function buildTree() {
       ),
     )
 
+    files.set(`${PREFIX}/${platform}/records.ndjson.gz`, bulkRecords(merged))
+
     platformEntries.push({
       platform,
       status: 'measured',
@@ -222,6 +250,9 @@ function buildTree() {
       observedAt: manifest.platforms?.[platform]?.observedAt ?? null,
       coverageVsDirectory: manifest.platforms?.[platform]?.coverageVsDirectory ?? null,
       index: `${PREFIX}/${platform}/index.json`,
+      // Named in the manifest so a bulk consumer discovers it instead of
+      // guessing, the same reason `index` is named rather than derived.
+      records_ndjson: `${PREFIX}/${platform}/records.ndjson.gz`,
     })
   }
 
