@@ -5,17 +5,17 @@
     "data/census/shopify-catalogue.ndjson.gz"
   ],
   "recordsFromEachCensus": {
-    "data/census/shopify-apps.ndjson.gz": 10921,
-    "data/census/shopify-catalogue.ndjson.gz": 12886
+    "data/census/shopify-apps.ndjson.gz": 20225,
+    "data/census/shopify-catalogue.ndjson.gz": 4061
   },
   "out": "../platform/data/shopify.ndjson",
-  "observedAt": "2026-08-05T23:04:49Z",
-  "sourceRows": 34336,
-  "recordsWritten": 23807,
+  "observedAt": "2026-08-06T23:06:10Z",
+  "sourceRows": 43640,
+  "recordsWritten": 24286,
   "excluded": [],
   "excludedCount": 0,
-  "measuredInstallsAttached": 8681,
-  "measuredInstallsAvailable": 7576,
+  "measuredInstallsAttached": 10270,
+  "measuredInstallsAvailable": 7458,
   "checks": [
     "required shape and path invariant",
     "activeInstalls travels with activeInstallsSource",
