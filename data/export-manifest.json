@@ -21,12 +21,12 @@
       "coverageNote": "The directory reports 5,610 and all 5,610 were fetched. Six are not published because JED declares no extension type for them - their Includes badge row is empty on the listing page itself - and kind is a required field with no honest default. They are named in data/joomla.export-report.json. Algolia caps pagination at 1,000 hits and refuses the browse endpoint to a search-only key, so paging the index straight through returns 1,000 of 5,610 with an HTTP 200 for every request; core_catid partitions the index exactly and every slice fits under the cap."
     },
     "shopify": {
-      "records": 24905,
-      "observedAt": "2026-08-09T23:21:45Z",
+      "records": 25004,
+      "observedAt": "2026-08-10T23:20:14Z",
       "source": "apps.shopify.com listing pages, enriched with third-party-measured install counts",
-      "directoryReportedTotal": 24786,
-      "coverageVsDirectory": 1.0048,
-      "coverageNote": "24905 of 24786 listed apps. The App Store has no bulk endpoint and rate-limits hard, so the crawl is built up across scheduled passes rather than in one; read coverageVsDirectory before comparing this platform with the others. Apps the measurement provider has not observed carry no activeInstalls field rather than a zero."
+      "directoryReportedTotal": 24834,
+      "coverageVsDirectory": 1.0068,
+      "coverageNote": "25004 of 24834 listed apps. The App Store has no bulk endpoint and rate-limits hard, so the crawl is built up across scheduled passes rather than in one; read coverageVsDirectory before comparing this platform with the others. Apps the measurement provider has not observed carry no activeInstalls field rather than a zero."
     }
   },
   "notMeasured": {},
