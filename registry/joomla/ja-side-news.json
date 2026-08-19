@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-side-news",
+  "platform": "joomla",
+  "slug": "ja-side-news",
+  "title": "JA Side News",
+  "kind": [
+    "module"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-19T00:00:00Z"
+}

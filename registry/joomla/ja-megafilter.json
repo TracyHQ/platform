@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-megafilter",
+  "platform": "joomla",
+  "slug": "ja-megafilter",
+  "title": "JA Megafilter",
+  "kind": [
+    "plugin"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/guru-pro",
+  "platform": "joomla",
+  "slug": "guru-pro",
+  "title": "Guru Pro",
+  "kind": [
+    "component"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": true
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}
