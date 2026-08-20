@@ -1,6 +1,15 @@
-# Ownership points at @leeknowsai, a single verified org member, because
-# @TracyHQ/registry-maintainers does not exist yet. Switch to the team once it
-# does — one person is a single point of failure for review.
+# Ownership points at @leeknowsai and @TracyHQ/super-admin-team.
+#
+# It pointed at @leeknowsai alone, with a note to switch to a team once one existed,
+# because @TracyHQ/registry-maintainers did not. That team still does not, and the
+# single point of failure the note warned about arrived: two vendor submissions sat
+# with green CI and nowhere to go, and the suggestion on the table was to turn the
+# branch protection off entirely.
+#
+# Widening beats removing. @TracyHQ/super-admin-team already exists and already holds
+# nine people who have admin here, @leeknowsai among them, so any of them can review a
+# submission and the gate stays up. Move to a narrower registry-maintainers team when
+# somebody creates one; that is still the better shape.
 #
 # This file only gates merges because branch protection on `main` has "Require
 # review from Code Owners" turned on. It was turned on the day the repo was
@@ -19,9 +28,9 @@
 #
 # "Anyone can submit" is still true: opening a pull request needs no permission.
 # Merging one needs a reader.
-/registry/   @leeknowsai
+/registry/   @leeknowsai @TracyHQ/super-admin-team
 
-/curation/   @leeknowsai
+/curation/   @leeknowsai @TracyHQ/super-admin-team
 
 # data/ IS DELIBERATELY UNOWNED, AND THAT IS A CHANGE FROM HOW THIS STARTED.
 #
@@ -44,8 +53,8 @@
 # allowance on the branch protection instead — named, auditable, and limited to
 # that identity, rather than the silent "admins can do anything" it relied on
 # before.
-/schema/     @leeknowsai
-/src/        @leeknowsai
-/bin/        @leeknowsai
-/scripts/    @leeknowsai
-/.github/    @leeknowsai
+/schema/     @leeknowsai @TracyHQ/super-admin-team
+/src/        @leeknowsai @TracyHQ/super-admin-team
+/bin/        @leeknowsai @TracyHQ/super-admin-team
+/scripts/    @leeknowsai @TracyHQ/super-admin-team
+/.github/    @leeknowsai @TracyHQ/super-admin-team
