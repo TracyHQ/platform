@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-slideshow-lite",
+  "platform": "joomla",
+  "slug": "ja-slideshow-lite",
+  "title": "JA Slideshow Lite",
+  "kind": [
+    "module"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-19T00:00:00Z"
+}

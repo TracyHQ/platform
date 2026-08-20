@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-image-hotspot",
+  "platform": "joomla",
+  "slug": "ja-image-hotspot",
+  "title": "JA Image Hotspot",
+  "kind": [
+    "module"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/t4-page-builder",
+  "platform": "joomla",
+  "slug": "t4-page-builder",
+  "title": "T4 Page Builder",
+  "kind": [
+    "component"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": true
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

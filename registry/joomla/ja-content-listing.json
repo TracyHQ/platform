@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-content-listing",
+  "platform": "joomla",
+  "slug": "ja-content-listing",
+  "title": "JA Content Listing",
+  "kind": [
+    "module"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-joomla-gdpr",
+  "platform": "joomla",
+  "slug": "ja-joomla-gdpr",
+  "title": "JA Joomla GDPR",
+  "kind": [
+    "component"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-19T00:00:00Z"
+}

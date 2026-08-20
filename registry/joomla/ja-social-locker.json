@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-social-locker",
+  "platform": "joomla",
+  "slug": "ja-social-locker",
+  "title": "JA Social Locker",
+  "kind": [
+    "module"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

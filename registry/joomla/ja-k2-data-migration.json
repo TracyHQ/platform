@@ -1,0 +1,19 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-k2-data-migration",
+  "platform": "joomla",
+  "slug": "ja-k2-data-migration",
+  "title": "JA K2 Data Migration",
+  "kind": [
+    "plugin"
+  ],
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "platformData": {
+    "joomla": {
+      "isJ6": false
+    }
+  },
+  "declaredAt": "2026-08-19T00:00:00Z"
+}
