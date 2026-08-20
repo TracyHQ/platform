@@ -1,0 +1,27 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-nexora",
+  "platform": "joomla",
+  "slug": "ja-nexora",
+  "title": "JA Nexora",
+  "kind": [
+    "template"
+  ],
+  "listingUrl": null,
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "commercial": {
+    "businessModel": "subscription"
+  },
+  "platformData": {
+    "joomla": {
+      "joomlaVersions": [
+        "60"
+      ],
+      "isJ5": false,
+      "isJ6": true
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

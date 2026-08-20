@@ -1,0 +1,28 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/t4-framework",
+  "platform": "joomla",
+  "slug": "t4-framework",
+  "title": "T4 Framework",
+  "kind": [
+    "package"
+  ],
+  "listingUrl": null,
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "commercial": {
+    "businessModel": "subscription"
+  },
+  "platformData": {
+    "joomla": {
+      "joomlaVersions": [
+        "50",
+        "60"
+      ],
+      "isJ5": true,
+      "isJ6": true
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}

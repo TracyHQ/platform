@@ -1,0 +1,28 @@
+{
+  "$schema": "https://registry.tracy.ai/platform/schema/platform-record.schema.json",
+  "name": "joomla/ja-agrivita",
+  "platform": "joomla",
+  "slug": "ja-agrivita",
+  "title": "JA Agrivita",
+  "kind": [
+    "template"
+  ],
+  "listingUrl": null,
+  "authorship": {
+    "author": "JoomlArt"
+  },
+  "commercial": {
+    "businessModel": "subscription"
+  },
+  "platformData": {
+    "joomla": {
+      "joomlaVersions": [
+        "50",
+        "60"
+      ],
+      "isJ5": true,
+      "isJ6": true
+    }
+  },
+  "declaredAt": "2026-08-18T00:00:00Z"
+}
