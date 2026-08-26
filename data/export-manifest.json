@@ -22,7 +22,7 @@
     },
     "shopify": {
       "records": 25969,
-      "observedAt": "2026-08-25T23:15:52Z",
+      "observedAt": "2026-08-26T23:29:29Z",
       "source": "apps.shopify.com listing pages, enriched with third-party-measured install counts",
       "directoryReportedTotal": 25468,
       "coverageVsDirectory": 1.0197,
