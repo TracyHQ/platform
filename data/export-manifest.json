@@ -22,11 +22,11 @@
     },
     "shopify": {
       "records": 26138,
-      "observedAt": "2026-08-28T23:15:34Z",
+      "observedAt": "2026-08-29T18:15:07Z",
       "source": "apps.shopify.com listing pages, enriched with third-party-measured install counts",
-      "directoryReportedTotal": 25468,
-      "coverageVsDirectory": 1.0263,
-      "coverageNote": "26138 of 25468 listed apps. The App Store has no bulk endpoint and rate-limits hard, so the crawl is built up across scheduled passes rather than in one; read coverageVsDirectory before comparing this platform with the others. Apps the measurement provider has not observed carry no activeInstalls field rather than a zero."
+      "directoryReportedTotal": 25608,
+      "coverageVsDirectory": 1.0207,
+      "coverageNote": "26138 of 25608 listed apps. The App Store has no bulk endpoint and rate-limits hard, so the crawl is built up across scheduled passes rather than in one; read coverageVsDirectory before comparing this platform with the others. Apps the measurement provider has not observed carry no activeInstalls field rather than a zero."
     }
   },
   "notMeasured": {},
