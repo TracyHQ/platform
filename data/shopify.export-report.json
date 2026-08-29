@@ -9,7 +9,7 @@
     "data/census/shopify-catalogue.ndjson.gz": 29
   },
   "out": "../platform/data/shopify.ndjson",
-  "observedAt": "2026-08-28T23:15:34Z",
+  "observedAt": "2026-08-29T18:15:07Z",
   "sourceRows": 49524,
   "recordsWritten": 26138,
   "excluded": [],
